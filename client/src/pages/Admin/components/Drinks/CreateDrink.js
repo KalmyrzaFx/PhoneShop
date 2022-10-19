@@ -6,21 +6,24 @@ import { useFormik } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllBrands } from "../../../../store/actions/admin/brands"
 import { addDrink } from "../../../../store/actions/admin/drinks"
+import { RootState } from "../../../../store/reducers/reducer"
 
 export default function CreateDrink() {
   const dispatch = useDispatch()
   React.useEffect(() => {
     dispatch(getAllBrands())
   }, [])
-  const allBrands = useSelector(state => state.brands.get)
+  const allBrands = useSelector((state: RootState) => {
+    return state.brands.get;
+  });
   const validationSchema = yup.object().shape({
     name: yup
       .string()
       .required("Обязательное поле")
       .min(3, "Минимальное количество символов 3"),
     brandId: yup.number().required("Обязательное поле"),
-    price: yup.number("Должно быть число").required("Обязательное поле"),
-    amount: yup.number("Должно быть число").required("Обязательное поле"),
+    price: yup.number().required("Обязательное поле"),
+    amount: yup.number().required("Обязательное поле"),
     logo: yup.string().required("Обязательное поле"),
   })
   const initialValues = {
