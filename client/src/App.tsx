@@ -15,7 +15,7 @@ function App() {
   }, [])
   return (
     <BrowserRouter>
-      <div className='app'>
+      <div className = 'app'>
         <ReactNotifications isMobile={true} />
         <MyRoutes />
       </div>

@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllBrands, addBrand } from "../../../../store/actions/admin/brands"
 import { FormControl, InputGroup } from "react-bootstrap"
 import BrandItem from "./BrandItem"
+import { RootState } from "../../../../store/reducers/reducer"
 
-export default function Types() {
+export default function Types(): JSX.Element {
   const dispatch = useDispatch()
-  const brands = useSelector(state => state.brands.get)
-  const [typeName, setTypeName] = React.useState()
+  const brands = useSelector((state: RootState) => {
+    return state.brands.get;
+  });
+  const [typeName, setTypeName] = React.useState(null)
   React.useEffect(() => {
     dispatch(getAllBrands())
   }, [])

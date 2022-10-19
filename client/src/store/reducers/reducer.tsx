@@ -10,7 +10,7 @@ import userOrders from "./lk/userOrders"
 import orders from "./admin/orders"
 import reports from "./admin/reports"
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   auth,
   types,
   drinks,
@@ -22,3 +22,5 @@ export default combineReducers({
   orders,
   reports,
 })
+
+export type RootState = ReturnType<typeof rootReducer>
